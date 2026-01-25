@@ -19,7 +19,7 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 # cargo
-source $"($nu.home-path)/.cargo/env.nu"
+source $"($nu.home-dir)/.cargo/env.nu"
 
 # nushell
 $env.config.buffer_editor = "hx"
