@@ -24,3 +24,4 @@ $env.config.show_banner = false
 
 # alias
 alias ft = fastfetch
+source "~/.cargo/env.nu"
