@@ -16,3 +16,6 @@
 
 # helix editor
 $env.HELIX_RUNTIME = "~/tools/helix/runtime"
+
+# kimi-code
+$env.PATH = ($env.PATH | prepend ($nu.home-dir | path join ".kimi-code" "bin"))
