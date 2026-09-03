@@ -15,3 +15,7 @@ hidden = false
 [editor.indent-guides]
 # render = true
 # skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+wrap-indicator = ""
