@@ -58,11 +58,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client and client:supports_method("textDocument/completion") then
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 
-      -- Also trigger completion on every keyword character (:h lsp-autocompletion)
+      -- Also trigger completion from the 2nd keyword character of a word
       vim.api.nvim_create_autocmd("InsertCharPre", {
         buffer = args.buf,
         callback = function()
-          if vim.fn.pumvisible() == 0 and vim.v.char:match("[%w_]") then
+          if vim.fn.pumvisible() ~= 0 then
+            return
+          end
+          if not vim.v.char:match("[%w_]") then
+            return
+          end
+          local col = vim.fn.col(".")
+          local prev = col >= 2 and vim.api.nvim_get_current_line():sub(col - 1, col - 1) or ""
+          if prev:match("[%w_]") then
             vim.lsp.completion.get()
           end
         end,
